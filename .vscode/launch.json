@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Run Spring SOAP",
+      "request": "launch",
+      "mainClass": "com.example.oficina.OficinaSoapApplication",
+      "projectName": "oficina-soap"
+    }
+  ]
+}

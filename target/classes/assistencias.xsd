@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  XSD contract for the SOAP service.
+  In Spring Web Services, the WSDL is generated from this schema, which matches the
+  contract-first approach discussed in the Web Services / Spring classes.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://example.com/oficina"
+           xmlns:tns="http://example.com/oficina"
+           elementFormDefault="qualified">
+
+  <xs:simpleType name="estadoAssistencia">
+    <!-- Estados permitidos, exatamente como pede o enunciado. -->
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="RECEBIDO"/>
+      <xs:enumeration value="EM_SERVICO"/>
+      <xs:enumeration value="CONCLUIDO"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="assistencia">
+    <!-- Estrutura principal devolvida pelo servico. -->
+    <xs:sequence>
+      <xs:element name="idAssistencia" type="xs:long" minOccurs="0"/>
+      <xs:element name="dataRealizacao" type="xs:string"/>
+      <xs:element name="matricula" type="xs:string"/>
+      <xs:element name="funcionario" type="xs:string"/>
+      <xs:element name="valor" type="xs:double"/>
+      <xs:element name="estado" type="tns:estadoAssistencia"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="adicionarAssistenciaRequest">
+    <!-- Mensagem de pedido para criar uma nova assistencia. -->
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="dataRealizacao" type="xs:string"/>
+        <xs:element name="matricula" type="xs:string"/>
+        <xs:element name="funcionario" type="xs:string"/>
+        <xs:element name="valor" type="xs:double"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="adicionarAssistenciaResponse">
+    <!-- Mensagem de resposta da operacao de criacao. -->
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="resultado" type="xs:string"/>
+        <xs:element name="assistencia" type="tns:assistencia" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="detalheAssistenciaRequest">
+    <!-- Mensagem de pedido da operacao de detalhe. -->
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="idAssistencia" type="xs:long"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="detalheAssistenciaResponse">
+    <!-- Mensagem de resposta da operacao de detalhe. -->
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="resultado" type="xs:string"/>
+        <xs:element name="assistencia" type="tns:assistencia" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="eliminarAssistenciaRequest">
+    <!-- Mensagem de pedido da operacao de eliminacao. -->
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="idAssistencia" type="xs:long"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="eliminarAssistenciaResponse">
+    <!-- Mensagem de resposta da operacao de eliminacao. -->
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="resultado" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
