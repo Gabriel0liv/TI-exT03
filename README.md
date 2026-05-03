@@ -374,23 +374,4 @@ Esse endereco mostra o contrato gerado pelo Spring a partir do XSD.
 - tenta remover o registo;
 - devolve `SUCESSO` ou `INSUCESSO`.
 
-## 9. Porque o modelo foi simplificado
 
-Algumas decisoes foram tomadas para facilitar o estudo:
-
-- `dataRealizacao` ficou como `String`;
-- o estado foi guardado como `Enum`;
-- a base e em memoria;
-- a estrutura foi mantida simples para se parecer com o trabalho das aulas.
-
-## 10. O que deves saber dizer no exame
-
-Se te perguntarem o que fizeste, a resposta base e esta:
-
-- criei um servico SOAP em Spring;
-- defini primeiro o contrato em XSD;
-- publiquei o contrato como WSDL;
-- criei a entidade JPA para guardar assistencias;
-- usei H2 como base de dados em memoria;
-- separei endpoint, service e repository;
-- testei tudo no SOAPUI.
